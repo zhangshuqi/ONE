@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="one.android.com.one.wrapper.recyclerview.databindingadapter.DummyClass" />
+            name="presenter"
+            type="one.android.com.one.wrapper.recyclerview.databindingadapter.BaseBindingItemPresenter" />
 
         <variable
             name="itemData"

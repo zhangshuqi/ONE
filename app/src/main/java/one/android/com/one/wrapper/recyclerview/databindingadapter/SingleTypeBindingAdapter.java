@@ -52,12 +52,12 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
             if (headDecorator != null)
                 headDecorator.decorator(holder, position, itemViewType, headSingleData);
             if (headPresenter != null)
-                binding.setVariable(BR.viewModel, headPresenter);
+                binding.setVariable(BR.presenter, headPresenter);
         } else if (isFooterView(position)) {
             if (footSingleFootData == null) return;
             data = footSingleFootData;
             if (footPresenter != null)
-                binding.setVariable(BR.viewModel, footPresenter);
+                binding.setVariable(BR.presenter, footPresenter);
             if (footDecorator != null) {
                 footDecorator.decorator(holder, position - getHeadAndItemCount(), itemViewType, footSingleFootData);
             }
@@ -67,7 +67,7 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
             if (itemDecorator != null)
                 itemDecorator.decorator(holder, position - getHeadCount(), itemViewType, mData);
             if (mPresenter != null) {
-                binding.setVariable(BR.viewModel, mPresenter);
+                binding.setVariable(BR.presenter, mPresenter);
             }
         }
         if (canLongClick) {
@@ -80,7 +80,9 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
             });
         }
         // 分配数据
+
         holder.getBinding().setVariable(BR.itemData, data);
+        holder.getBinding().setVariable(BR.itemPosition, position);
         holder.getBinding().executePendingBindings();
     }
 

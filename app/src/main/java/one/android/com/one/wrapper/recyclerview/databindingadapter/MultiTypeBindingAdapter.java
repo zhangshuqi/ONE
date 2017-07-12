@@ -125,7 +125,6 @@ public class MultiTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
         }
         footDataList.addAll(config.getTypeConfigData());
     }
-
     public void addSingleHeadConfig(int headKey, int headRes, Object headData) {
         if (headDataList == null) {
             headDataList = new ArrayList();
@@ -178,6 +177,7 @@ public class MultiTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
         } else if (footKeyList.size() == 0) {
             return false;
         }
+        // 拿到head和item 个数8
         int count = getHeadAndItemCount();
         return position >= count && position <= getItemCount();
     }
@@ -232,13 +232,13 @@ public class MultiTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
             if (headDecorator != null)
                 headDecorator.decorator(holder, position, itemViewType, data);
             if (headPresenter != null)
-                binding.setVariable(BR.viewModel, headPresenter);
+                binding.setVariable(BR.presenter, headPresenter);
             multiTypeHeadHolderMap.put(itemViewType,holder);
         } else if (isFooterView(position)) {
             if (footDataList == null || footDataList.size() == 0) return;
             data = footDataList.get(position - getHeadAndItemCount());
             if (footPresenter != null)
-                binding.setVariable(BR.viewModel, footPresenter);
+                binding.setVariable(BR.presenter, footPresenter);
             if (footDecorator != null) {
                 footDecorator.decorator(holder, position - getHeadAndItemCount(), itemViewType, data);
             }
@@ -248,7 +248,7 @@ public class MultiTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
             if (itemDecorator != null)
                 itemDecorator.decorator(holder, position - getHeadCount(), itemViewType, data);
             if (mPresenter != null) {
-                binding.setVariable(BR.viewModel, mPresenter);
+                binding.setVariable(BR.presenter, mPresenter);
             }
         }
         if (data == null) {
@@ -258,8 +258,7 @@ public class MultiTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
         binding.setVariable(BR.itemData, data);
         binding.setVariable(BR.itemPosition, position);
 
-        //分配事件
-        binding.executePendingBindings();
+
         if (canLongClick) {
             holder.getBinding().getRoot().setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -269,6 +268,8 @@ public class MultiTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
                 }
             });
         }
+        //分配事件
+        binding.executePendingBindings();
     }
 
     @Override

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.text.TextUtils"/>
         <import type="android.view.View"/>
-        <vriable
-            name="viewModel"
-            type="one.android.com.one.moudel.music.viewmodel.MusicViewModel"/>
+        <variable
+            name="presenter"
+            type="one.android.com.one.moudel.music.viewmodel.MusicViewModel" />
 
         <variable
             name="itemData"
@@ -20,18 +19,22 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
+        android:onClick="@{()->presenter.onItemClick(itemPosition,itemData)}"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-       <!-- android:onClick="@{()->viewModel.onItemClick(itemPosition,itemData)}"-->
+       <!---->
         <TextView
-            android:visibility="@{TextUtils.isEmpty(itemData.author)? View.GONE:View.VISIBLE }"
+
+            android:visibility="@{TextUtils.isEmpty(itemData.audio_url)? View.GONE:View.VISIBLE}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="@{itemData.author}"
+            android:text="@{itemData.audio_url}"
             android:textSize="16dp"/>
 
         <TextView
+            android:id="@+id/tv_title"
+            android:onClick="@{()->presenter.clickAvatat(itemData)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"

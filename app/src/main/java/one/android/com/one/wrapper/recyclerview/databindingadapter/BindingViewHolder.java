@@ -18,4 +18,5 @@ public class BindingViewHolder<T extends ViewDataBinding> extends RecyclerView.V
     public T getBinding(){
         return mBinding;
     }
+
 }

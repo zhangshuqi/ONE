@@ -7,7 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import one.android.com.one.R;
-import one.android.com.one.moudel.read.activity.ReadActivity;
+import one.android.com.one.moudel.music.activity.MusicActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tv_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ReadActivity.class);
+                Intent intent = new Intent(MainActivity.this, MusicActivity.class);
                 startActivity(intent);
             }
         });
