@@ -1,1 +1,14 @@
 /build
+/rocoofix
+/gradle
+/.idea
+app-androidmarket-release.apk
+app-baidu-release.apk
+app-xiaomi-release.apk
+app-zhushou91-release.apk
+app_xiaomi_release.apk
+qxinli.apk
+app.iml
+*.iml
+*.apk
+*.log

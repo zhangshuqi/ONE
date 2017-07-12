@@ -26,5 +26,9 @@
             android:text="@{itemData.title}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@{itemData.audio_url}"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
     </LinearLayout>
 </layout>
