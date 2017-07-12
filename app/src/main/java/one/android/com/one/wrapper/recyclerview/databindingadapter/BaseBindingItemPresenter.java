@@ -5,5 +5,5 @@ package one.android.com.one.wrapper.recyclerview.databindingadapter;
  */
 
 public  interface BaseBindingItemPresenter<T> {
-     void onItemClick(T itemData);
+     void onItemClick(int position,T itemData);
 }

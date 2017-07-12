@@ -2,33 +2,107 @@
 <layout>
 
     <data>
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
         <vriable
             name="viewModel"
-            type="one.android.com.one.moudel.music.model.MusicModel" />
+            type="one.android.com.one.moudel.music.viewmodel.MusicViewModel"/>
 
         <variable
             name="itemData"
-            type="one.android.com.one.bean.MusicListInfo" />
+            type="one.android.com.one.bean.MusicListInfo"/>
 
         <variable
             name="itemPosition"
-            type="java.lang.Integer" />
+            type="java.lang.Integer"/>
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+       <!-- android:onClick="@{()->viewModel.onItemClick(itemPosition,itemData)}"-->
         <TextView
+            android:visibility="@{TextUtils.isEmpty(itemData.author)? View.GONE:View.VISIBLE }"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@{itemData.author}"
+            android:textSize="16dp"/>
 
-            android:textColor="#332254"
-            android:textSize="20dp"
-            android:text="@{itemData.title}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="标题"
+            android:textSize="18dp"/>
+
         <ImageView
-            android:src="@{itemData.audio_url}"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ahy"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="作者"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="详情"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:padding="4dp"
+                android:text="12:00"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/image_view"
+                android:padding="4dp"
+                android:text="80"
+            />
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:layout_toLeftOf="@+id/image_button"
+                android:padding="4dp"
+                android:src="@drawable/aid"
+            />
+
+            <ImageButton
+                android:id="@+id/image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/aae"
+            />
+
+        </RelativeLayout>
+
     </LinearLayout>
 </layout>

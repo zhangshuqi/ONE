@@ -26,11 +26,13 @@ public class MusicViewModel extends BaseViewModel<ActivityMusicBinding,MusicMode
     public void initNet() {
 
         mModel.getMusicListData().subscribe(new Subscriber<List<MusicListInfo>>() {
+            //完成
             @Override
             public void onCompleted() {
 
             }
 
+            //错误
             @Override
             public void onError(Throwable e) {
 
@@ -46,13 +48,18 @@ public class MusicViewModel extends BaseViewModel<ActivityMusicBinding,MusicMode
     @Override
     public void initView() {
         adapter = new SingleTypeBindingAdapter(mActivity,null, R.layout.item_music_list);
+        //
         adapter.setItemPresenter(this);
+
+        //设置Adapter
         mBinding.rvContent.setAdapter(adapter);
+        //设置布局管理器(线性布局管理器)
         mBinding.rvContent.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
+
     @Override
-    public void onItemClick(MusicListInfo itemData) {
+    public void onItemClick(int position ,MusicListInfo itemData) {
 
     }
 }

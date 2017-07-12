@@ -14,6 +14,8 @@ public abstract class BaseViewModel <V extends ViewDataBinding,M extends BaseMod
     protected AppCompatActivity mActivity;
     protected V mBinding ;
     protected M mModel;
+
+    //初始化mBinding,mModel,mActivity
     public void init(ViewDataBinding viewDataBinding, AppCompatActivity activity) {
         mActivity = activity;
         mBinding= (V) viewDataBinding;

@@ -10,6 +10,7 @@ import one.android.com.one.moudel.music.viewmodel.MusicViewModel;
 
 public class MusicActivity extends BaseMVVMActivity<MusicViewModel> {
     @Override
+    //关联布局
     public int getLayoutId() {
         return R.layout.activity_music;
     }

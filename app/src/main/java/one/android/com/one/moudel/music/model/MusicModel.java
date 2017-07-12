@@ -17,6 +17,9 @@ import rx.Observable;
 public class MusicModel implements BaseModel {
 
      public Observable<List<MusicListInfo>> getMusicListData(){
-       return   HttpMethods.getInstance().apiService.getMusicList().compose(RxJavaHttpHelper.<List<MusicListInfo>>handleResult()).compose(RxSchedulersHelper.<List<MusicListInfo>>applyIoTransformer());
+       return   HttpMethods.getInstance()
+               .apiService.getMusicList()
+               .compose(RxJavaHttpHelper.<List<MusicListInfo>>handleResult())
+               .compose(RxSchedulersHelper.<List<MusicListInfo>>applyIoTransformer());
      }
 }

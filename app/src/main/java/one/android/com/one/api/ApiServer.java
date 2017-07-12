@@ -15,4 +15,7 @@ import rx.Observable;
 public interface ApiServer {
     @GET(Url.MUSIC_LIST)
     Observable<BaseRequestData<List<MusicListInfo>>> getMusicList();
+
+    @GET(Url.READ_LIST)
+    Observable<BaseRequestData<List<MusicListInfo>>> getReadList();
 }
