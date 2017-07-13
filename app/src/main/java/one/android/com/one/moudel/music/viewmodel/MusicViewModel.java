@@ -4,6 +4,7 @@ package one.android.com.one.moudel.music.viewmodel;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.bumptech.glide.Glide;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import rx.Subscriber;
  * Created by Administrator on 2017/7/9 0009.
  */
 
-public class MusicViewModel extends BaseViewModel<ActivityMusicBinding,MusicModel> implements BaseBindingItemPresenter<MusicListInfo>{
+public class MusicViewModel extends BaseViewModel<ActivityMusicBinding, MusicModel> implements BaseBindingItemPresenter<MusicListInfo> {
 
     private SingleTypeBindingAdapter adapter;
 
@@ -51,48 +52,63 @@ public class MusicViewModel extends BaseViewModel<ActivityMusicBinding,MusicMode
                 adapter.refresh(musicListInfo);
             }
         });
-     }
+    }
 
     @Override
     public void initView() {
-        adapter = new SingleTypeBindingAdapter(mActivity,null, R.layout.item_music_list);
+
+        //创建一个item布局
+        adapter = new SingleTypeBindingAdapter(mActivity, null, R.layout.item_music_list);
+
+        //设置点击事件
         adapter.setItemPresenter(this);
         //设置Adapter
         mBinding.rvContent.setAdapter(adapter);
         //设置布局管理器(线性布局管理器)
         mBinding.rvContent.setLayoutManager(new LinearLayoutManager(mActivity));
-        final List<MusicListInfo> list  = new ArrayList<>();
-        MultiTypeBindingAdapter adapter1 =  new MultiTypeBindingAdapter(mActivity,list, R.layout.item_music_list){
+        //设置集合
+        final List<MusicListInfo> list = new ArrayList<>();
+
+        //创建MultiTypeBindingAdapter对象
+        MultiTypeBindingAdapter adapter1 = new MultiTypeBindingAdapter(mActivity, list, R.layout.item_music_list) {
+            //获得item类型
             @Override
             public int getMyItemViewType(int position, ArrayMap multiTypeMap) {
-                MusicListInfo musicListInfo = list.get(position);
-                if (musicListInfo.ad_type==1){
-                    return 1;
-                }
+
                 return ITEM_VIEW_NORMAL_TYPE;
             }
         };
+
+        //获得集合对象
         ArrayMap multiTypeMap = new ArrayMap();
-        multiTypeMap.put(1,R.layout.pager_empty);
+        //添加到集合
+        multiTypeMap.put(1, R.layout.pager_empty);
+        //关联item布局
         adapter1.addMultiTypeMap(multiTypeMap);
+        //
         adapter1.setItemDecorator(new BaseDataBindingDecorator<MusicListInfo>() {
+
             @Override
             public void decorator(BindingViewHolder holder, int position, int viewType, MusicListInfo mData) {
+                //得到XML布局对象
                 ItemMusicListBinding binding = (ItemMusicListBinding) holder.getBinding();
-                if (mData.ad_type==1){
-                    binding.tvTitle.setText("我是1");
-                }
+                binding.tvTitle.setText("我是1");
+
+                Glide.with(mActivity).load(mData.img_url).into(binding.ivMusicItem);
+
             }
         });
     }
 
 
-
     @Override
-    public void onItemClick(int position ,MusicListInfo itemData) {
+    public void onItemClick(int position, MusicListInfo itemData) {
         Logger.d("-------");
     }
-    public void clickAvatat(MusicListInfo itemData){
+
+    public void clickAvatat(MusicListInfo itemData) {
         String id = itemData.id;
     }
+
+
 }

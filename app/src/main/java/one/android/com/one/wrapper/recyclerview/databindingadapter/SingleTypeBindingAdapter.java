@@ -26,6 +26,7 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
     private int headSingleFootRes;
     private BindingViewHolder footBindingHolder;
 
+    //初始化
     public SingleTypeBindingAdapter(Context context, List data, int layoutRes) {
         super(context);
         mData = data;
@@ -33,16 +34,21 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
         mLayoutRes = layoutRes;
     }
 
+    //创建
     @Override
     public BindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //返回创建一个item的ID
         return new BindingViewHolder(DataBindingUtil.inflate(mLayoutInflater, getLayoutRes(), parent, false));
     }
 
+    //绑定
     @Override
     public void onBindViewHolder(BindingViewHolder holder, final int position) {
         if (mData == null) {
             throw new NullPointerException("BaseDataBindingAdapter  data is null");
         }
+
+        //因为有头跟尾布局,会导致item获得错误的数据
         Object data = null;
         ViewDataBinding binding = holder.getBinding();
         int itemViewType = getItemViewType(position);
@@ -80,7 +86,6 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
             });
         }
         // 分配数据
-
         holder.getBinding().setVariable(BR.itemData, data);
         holder.getBinding().setVariable(BR.itemPosition, position);
         holder.getBinding().executePendingBindings();
@@ -89,9 +94,11 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
     @Override
     @LayoutRes
     public int getLayoutRes() {
+        //根据ID获得布局
         return mLayoutRes;
     }
 
+    //尾部布局
     @Override
     public boolean isFooterView(int position) {
         if (footSingleKey <= 0) {
@@ -103,6 +110,7 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
         return position >= count && position <= getItemCount();
     }
 
+    //头布局
     @Override
     protected boolean isHeaderView(int position) {
         if (headSingleKey <= 0) {
@@ -116,6 +124,7 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
 
     }
 
+    //获得头+item个数
     @Override
     protected int getHeadAndItemCount() {
         int count = 0;
@@ -124,6 +133,7 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
         return count;
     }
 
+    //获得头个数
     private int getHeadCount() {
         int count = 0;
         if (headSingleData != null && headSingleKey > 0 && footSingleFootRes > 0) {
@@ -132,6 +142,7 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
         return count;
     }
 
+    //添加尾部设置
     public void addSingleFootConfig(int footKey, int footRes, Object footData) {
         footSingleKey = footKey;
         footSingleFootRes = footRes;
@@ -141,6 +152,7 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
         footSingleFootData = footData;
     }
 
+    //添加头部设置
     public void addSingleHeaderConfig(int headKey, int headRes, Object headData) {
         headSingleKey = headKey;
         headSingleFootRes = headRes;
@@ -150,6 +162,7 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
         headSingleData = headData;
     }
 
+    //获得item个数
     @Override
     public int getItemCount() {
         int size = mData.size();

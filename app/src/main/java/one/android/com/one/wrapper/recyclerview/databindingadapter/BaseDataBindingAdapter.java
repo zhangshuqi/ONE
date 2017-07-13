@@ -26,7 +26,9 @@ public abstract class BaseDataBindingAdapter<T> extends RecyclerView.Adapter<Bin
     protected BaseDataBindingDecorator footDecorator;
 
     public BaseDataBindingAdapter(Context context) {
+        //得到系统服务
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //创建一个集合
         mData = new ArrayList<>();
     }
 
@@ -35,6 +37,7 @@ public abstract class BaseDataBindingAdapter<T> extends RecyclerView.Adapter<Bin
         void decorator(BindingViewHolder holder, int position, int viewType, List<T> mData);
     }
 
+    //点击事件的对象是同一个,所以抽取成基类中的方法
     public void setItemPresenter(BaseBindingItemPresenter presenter) {
         mPresenter = presenter;
     }

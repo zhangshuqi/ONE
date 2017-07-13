@@ -11,10 +11,12 @@ import android.support.v7.widget.RecyclerView;
 public class BindingViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder {
     private   T mBinding;
 
+
     public BindingViewHolder(T binding) {
         super(binding.getRoot());
         mBinding=binding;
     }
+    //返回一个view
     public T getBinding(){
         return mBinding;
     }

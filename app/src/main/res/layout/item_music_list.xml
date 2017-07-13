@@ -5,7 +5,7 @@
         <import type="android.view.View"/>
         <variable
             name="presenter"
-            type="one.android.com.one.moudel.music.viewmodel.MusicViewModel" />
+            type="one.android.com.one.moudel.music.viewmodel.MusicViewModel"/>
 
         <variable
             name="itemData"
@@ -19,48 +19,49 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:onClick="@{()->presenter.onItemClick(itemPosition,itemData)}"
         android:layout_height="wrap_content"
+        android:onClick="@{()->presenter.onItemClick(itemPosition,itemData)}"
         android:orientation="vertical">
-       <!---->
+
         <TextView
 
-            android:visibility="@{TextUtils.isEmpty(itemData.audio_url)? View.GONE:View.VISIBLE}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="@{itemData.audio_url}"
+            android:text="--音乐--"
             android:textSize="16dp"/>
+        <!-- android:visibility="@{TextUtils.isEmpty(itemData.audio_url)? View.GONE:View.VISIBLE}"-->
+        <!--android:onClick="@{()->presenter.clickAvatat(itemData)}"-->
 
         <TextView
             android:id="@+id/tv_title"
-            android:onClick="@{()->presenter.clickAvatat(itemData)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:text="标题"
+            android:text="@{itemData.author.desc}"
             android:textSize="18dp"/>
 
         <ImageView
+            android:id="@+id/iv_music_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ahy"/>
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:text="作者"/>
+            android:text="@{itemData.author.user_name}"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:text="详情"/>
+            android:text="@{itemData.forward}"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -73,7 +74,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
                 android:padding="4dp"
-                android:text="12:00"/>
+                android:text="@{itemData.last_update_date}"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -81,7 +82,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/image_view"
                 android:padding="4dp"
-                android:text="80"
+                android:text="@{itemData.author.fans_total}"
             />
 
             <ImageView
