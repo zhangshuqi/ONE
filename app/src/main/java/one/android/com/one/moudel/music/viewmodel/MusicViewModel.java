@@ -1,10 +1,13 @@
 package one.android.com.one.moudel.music.viewmodel;
 
 
-import android.support.v4.util.ArrayMap;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -19,7 +22,6 @@ import one.android.com.one.moudel.music.model.MusicModel;
 import one.android.com.one.wrapper.recyclerview.databindingadapter.BaseBindingItemPresenter;
 import one.android.com.one.wrapper.recyclerview.databindingadapter.BaseDataBindingDecorator;
 import one.android.com.one.wrapper.recyclerview.databindingadapter.BindingViewHolder;
-import one.android.com.one.wrapper.recyclerview.databindingadapter.MultiTypeBindingAdapter;
 import one.android.com.one.wrapper.recyclerview.databindingadapter.SingleTypeBindingAdapter;
 import rx.Subscriber;
 
@@ -62,14 +64,13 @@ public class MusicViewModel extends BaseViewModel<ActivityMusicBinding, MusicMod
 
         //设置点击事件
         adapter.setItemPresenter(this);
-        //设置Adapter
-        mBinding.rvContent.setAdapter(adapter);
+
         //设置布局管理器(线性布局管理器)
         mBinding.rvContent.setLayoutManager(new LinearLayoutManager(mActivity));
         //设置集合
         final List<MusicListInfo> list = new ArrayList<>();
 
-        //创建MultiTypeBindingAdapter对象
+     /*   //创建MultiTypeBindingAdapter对象
         MultiTypeBindingAdapter adapter1 = new MultiTypeBindingAdapter(mActivity, list, R.layout.item_music_list) {
             //获得item类型
             @Override
@@ -85,19 +86,31 @@ public class MusicViewModel extends BaseViewModel<ActivityMusicBinding, MusicMod
         multiTypeMap.put(1, R.layout.pager_empty);
         //关联item布局
         adapter1.addMultiTypeMap(multiTypeMap);
-        //
-        adapter1.setItemDecorator(new BaseDataBindingDecorator<MusicListInfo>() {
+        //*/
+        adapter.setItemDecorator(new BaseDataBindingDecorator<MusicListInfo>() {
 
             @Override
             public void decorator(BindingViewHolder holder, int position, int viewType, MusicListInfo mData) {
                 //得到XML布局对象
-                ItemMusicListBinding binding = (ItemMusicListBinding) holder.getBinding();
-                binding.tvTitle.setText("我是1");
-
-                Glide.with(mActivity).load(mData.img_url).into(binding.ivMusicItem);
-
+                final ItemMusicListBinding binding = (ItemMusicListBinding) holder.getBinding();
+                //binding.tvTitle.setText("我是1");
+             //   Glide.with(mActivity).load(mData.img_url).into(binding.ivMusicItem);
+             /*   binding.likeView.setIsLike(false);
+                binding.likeView.setLikeCount(mData.like_count);*/
+                binding.likeView.setLikeInfo(mData);
+                Glide.with(mActivity).load(mData.img_url).asBitmap().centerCrop().into(new BitmapImageViewTarget(binding.ivMusicItem) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(mActivity.getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        binding.ivMusicItem.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
             }
         });
+        //设置Adapter
+        mBinding.rvContent.setAdapter(adapter);
     }
 
 

@@ -71,7 +71,7 @@ public class SingleTypeBindingAdapter<T> extends BaseDataBindingAdapter<T> {
         } else {
             data = mData.get(position - getHeadCount());
             if (itemDecorator != null)
-                itemDecorator.decorator(holder, position - getHeadCount(), itemViewType, mData);
+                itemDecorator.decorator(holder, position - getHeadCount(), itemViewType, data);
             if (mPresenter != null) {
                 binding.setVariable(BR.presenter, mPresenter);
             }

@@ -6,4 +6,5 @@ package one.android.com.one.utils;
 
 public class DataBindingUitls {
 
+   // @BindingAdapter()
 }

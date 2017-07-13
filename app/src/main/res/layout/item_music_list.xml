@@ -44,8 +44,8 @@
 
         <ImageView
             android:id="@+id/iv_music_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             />
 
@@ -76,25 +76,14 @@
                 android:padding="4dp"
                 android:text="@{itemData.last_update_date}"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/image_view"
-                android:padding="4dp"
-                android:text="@{itemData.author.fans_total}"
-            />
-
-            <ImageView
-                android:id="@+id/image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+             <one.android.com.one.wrapper.view.MusicLikeView
                 android:layout_centerVertical="true"
                 android:layout_marginRight="16dp"
                 android:layout_toLeftOf="@+id/image_button"
-                android:padding="4dp"
-                android:src="@drawable/aid"
-            />
+                android:id="@+id/like_view"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
 
             <ImageButton
                 android:id="@+id/image_button"

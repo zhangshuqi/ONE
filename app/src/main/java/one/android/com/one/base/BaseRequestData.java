@@ -6,5 +6,6 @@ package one.android.com.one.base;
 public class BaseRequestData<T> {
     public T data;
     public int res;
+    public String msg;
 
 }

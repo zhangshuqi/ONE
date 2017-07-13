@@ -36,4 +36,10 @@ public interface Url {
     String MUSIC_COMMENT = "comment/praiseandtime/music/";
     //影视评论
     String MOVIE_COMMENT = "comment/praiseandtime/movie/itemId/0";
+
+    //http://v3.wufazhuce.com:8000/api/praise/add?channel=update&source_id=9598&source=summary&version=4.0.7&
+    //uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android
+
+    // 点赞
+    String MUSIC_PRAISE = "praise/add";
 }
