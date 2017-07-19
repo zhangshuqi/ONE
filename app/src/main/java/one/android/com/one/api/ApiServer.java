@@ -10,6 +10,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -22,11 +23,18 @@ public interface ApiServer {
 
     @GET(Url.READ_LIST)
     Observable<BaseRequestData<List<MusicListInfo>>> getReadList();
+
     //http://v3.wufazhuce.com:8000/api/praise/add?channel=update&source_id=9598&source=summary&version=4.0.7&
     //uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android
     @FormUrlEncoded
     @POST()
-    Observable<BaseRequestData<Object>> praiseMusic(@retrofit2.http.Url String url ,@FieldMap Map<String,String>  map);
+    Observable<BaseRequestData<Object>> praiseMusic(@retrofit2.http.Url String url, @FieldMap Map<String, String> map);
 
+    @GET("onelist/idlist/?channel=wdj&version=4.2.2" +
+            "&uuid=ffffffff-c620-e1fd-ffff-ffff989a822c&platform=android")
     Observable<BaseRequestData<List<String>>> getDayIdList();
+
+    @GET("onelist/{id}/0?cchannel=wdj&version=4.2.2&uuid=ffffffff-c620-e1fd-ffff-ffff989a822c&platform=android")
+    Observable<BaseRequestData<List<Object>>> getDayDataList(@Path("id") String id);
+
 }

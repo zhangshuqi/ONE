@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <application
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -29,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".moudel.music.activity.MusicActivity"></activity>
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".moudel.main.activity.MainActivity"/>
         <activity android:name=".moudel.read.activity.ReadActivity"/>
     </application>
 

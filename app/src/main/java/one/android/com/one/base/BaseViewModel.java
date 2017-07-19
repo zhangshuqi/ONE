@@ -2,6 +2,7 @@ package one.android.com.one.base;
 
 import android.content.Intent;
 import android.databinding.ViewDataBinding;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import one.android.com.one.utils.TUtil;
@@ -14,6 +15,7 @@ public abstract class BaseViewModel <V extends ViewDataBinding,M extends BaseMod
     protected AppCompatActivity mActivity;
     protected V mBinding ;
     protected M mModel;
+    protected Fragment mFragment;
 
     //初始化mBinding,mModel,mActivity
     public void init(ViewDataBinding viewDataBinding, AppCompatActivity activity) {
@@ -23,6 +25,9 @@ public abstract class BaseViewModel <V extends ViewDataBinding,M extends BaseMod
         initView();
         initNet();
 
+    }  public void init(ViewDataBinding viewDataBinding, AppCompatActivity activity, Fragment fragment) {
+       this.mFragment =fragment;
+        init(viewDataBinding,activity);
     }
 
     public abstract void  initNet() ;

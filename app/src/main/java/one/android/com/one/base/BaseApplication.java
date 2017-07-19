@@ -1,6 +1,7 @@
 package one.android.com.one.base;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
@@ -10,11 +11,19 @@ import com.orhanobut.logger.Logger;
  */
 
 public class BaseApplication extends Application {
-    public  static final boolean DEBUG= true;
+    public static final boolean DEBUG = true;
+    private static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        context =getApplicationContext();
         initLogger();
+        Logger.d("----------------------------"+context);
     }
 
     private void initLogger() {
