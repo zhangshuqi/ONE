@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".moudel.music.activity.MusicActivity"></activity>
+        <activity android:name=".moudel.splash.activity.SplashActivity"/>
         <activity android:name=".moudel.read.activity.ReadActivity"/>
     </application>
 
