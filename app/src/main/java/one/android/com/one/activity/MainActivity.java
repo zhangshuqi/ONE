@@ -8,6 +8,7 @@ import android.view.View;
 
 import one.android.com.one.R;
 import one.android.com.one.moudel.music.activity.MusicActivity;
+import one.android.com.one.moudel.read.activity.ReadActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +24,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MusicActivity.class);
                 startActivity(intent);
+
+            }
+        });
+
+        findViewById(R.id.btn_read).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ReadActivity.class);
+                startActivity(intent);
+
             }
         });
 

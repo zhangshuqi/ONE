@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import one.android.com.one.R;
+import one.android.com.one.bean.LikeViewBean;
 import one.android.com.one.bean.MusicListInfo;
 import one.android.com.one.databinding.ViewMusicLikeBinding;
 import one.android.com.one.http.HttpMethods;
@@ -26,6 +27,7 @@ import rx.Subscriber;
 public class MusicLikeView extends RelativeLayout {
     private Context context;
     private ViewMusicLikeBinding mBinding;
+    private LikeViewBean mLikeViewBean;
 
     public MusicLikeView(Context context) {
         this(context, null);
@@ -83,14 +85,23 @@ public class MusicLikeView extends RelativeLayout {
         }else {
             mBinding.ivLike.setSelected(false);
         }*/
+        //是否点赞了
         mBinding.ivLike.setSelected(isLike);
+        //设置点赞的颜色
         mBinding.tvNumber.setTextColor(isLike?context.getResources().getColor(R.color.colorAccent) :context.getResources().getColor(R.color.colorPrimary));
     }
+
+    //设置点赞个数的方法
     public void setLikeCount(int count ){
         mBinding.tvNumber.setText(count+"");
     }
 
     public void setLikeInfo(MusicListInfo mData) {
         mBinding.tvNumber.setText(mData.like_count+"");
+    }
+
+    public void setLikeViewBean(LikeViewBean likeViewBean) {
+        mLikeViewBean = likeViewBean;
+            mBinding.tvNumber.setText(mLikeViewBean.mLikeNum+"");
     }
 }

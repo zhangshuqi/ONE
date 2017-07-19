@@ -15,6 +15,7 @@ import java.util.List;
 
 import one.android.com.one.R;
 import one.android.com.one.base.BaseViewModel;
+import one.android.com.one.bean.LikeViewBean;
 import one.android.com.one.bean.MusicListInfo;
 import one.android.com.one.databinding.ActivityMusicBinding;
 import one.android.com.one.databinding.ItemMusicListBinding;
@@ -95,9 +96,15 @@ public class MusicViewModel extends BaseViewModel<ActivityMusicBinding, MusicMod
                 final ItemMusicListBinding binding = (ItemMusicListBinding) holder.getBinding();
                 //binding.tvTitle.setText("我是1");
              //   Glide.with(mActivity).load(mData.img_url).into(binding.ivMusicItem);
-             /*   binding.likeView.setIsLike(false);
-                binding.likeView.setLikeCount(mData.like_count);*/
-                binding.likeView.setLikeInfo(mData);
+        /*        //设置成没点赞
+                binding.likeView.setIsLike(false);
+                //设置点赞的个数
+                binding.likeView.setLikeCount(mData.like_count);
+                //binding.likeView.setLikeInfo(mData);*/
+                LikeViewBean bean = new LikeViewBean();
+                bean.mLikeNum= mData.like_count;
+                binding.likeView.setLikeViewBean(bean);
+                //显示图片并把图片改成圆形
                 Glide.with(mActivity).load(mData.img_url).asBitmap().centerCrop().into(new BitmapImageViewTarget(binding.ivMusicItem) {
                     @Override
                     protected void setResource(Bitmap resource) {
