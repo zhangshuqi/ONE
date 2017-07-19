@@ -16,9 +16,9 @@ import rx.Observable;
 
 public class SplashModel implements BaseModel {
 
-     public Observable<List<MusicListInfo>> getMusicListData(){
+     public Observable<List<MusicListInfo>> getDayIdList(){
        return   HttpMethods.getInstance()
-               .apiService.getMusicList()
+               .apiService.getDayIdList()
                .compose(RxJavaHttpHelper.<List<MusicListInfo>>handleResult())
                .compose(RxSchedulersHelper.<List<MusicListInfo>>applyIoTransformer());
      }

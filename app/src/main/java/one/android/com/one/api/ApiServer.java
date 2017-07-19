@@ -27,5 +27,6 @@ public interface ApiServer {
     @FormUrlEncoded
     @POST()
     Observable<BaseRequestData<Object>> praiseMusic(@retrofit2.http.Url String url ,@FieldMap Map<String,String>  map);
-    
+
+    Observable<BaseRequestData<List<String>>> getDayIdList();
 }
